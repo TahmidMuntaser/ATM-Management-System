@@ -14,42 +14,129 @@ class Screen
 {
 
 public:
+
+    void displayMessage(string message){
+
+    }
+
+    void displayMessageLine(string message){
+
+    }
+
+    void displayMoneyAmount(double amount){
+
+    }
+
+
 };
 
 class Keypad
 {
-
 public:
+    int getInput(){
+
+    }
+
+    double getAmountInput(){
+
+
+    }
+
 };
 
 class CashDispenser
 {
-
 public:
+    void dispenseCash(double amount){
+
+    }
+
 };
 
 class DepositSlot
 {
-
 public:
+
+    void accenptEnvelope(){
+
+    }
+
 };
 
 class BankDatabase
 {
+private:
+
 
 public:
+
+    BankDatabase(){
+
+    }
+
+    bool authenticateUser(int accountNumber, int pin){
+
+    }
+
+    double getAvailableBalance(int accountNumber){
+
+    }
+
+    void credit(int accountNumber, double amount){
+
+    }
+
+    void debit(int accountNumber, double amount){
+
+
+    }
+
+
 };
 
 class Deposit
 {
+    private:
 
-public:
+
+    public:
+        Deposit(double amount){
+
+        }
+
+        double getAmount() const{
+
+        }
 };
 
 class ATMController
 {
+    private:
 
-public:
+    public:
+
+
+    void performBalanceInquiry(){
+
+    }
+
+    void performWithdrawal(){
+
+    }
+
+    void performDeposit(){
+
+    }
+
+    void authenticateUser(){
+
+    }
+
+    public:
+        void run(){
+            
+        }
+
 };
 
 int main(int argc, char const *argv[])
