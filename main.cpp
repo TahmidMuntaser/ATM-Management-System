@@ -136,14 +136,15 @@ class Deposit
 {
     private:
 
+        double amount;
 
     public:
-        Deposit(double amount){
+        Deposit(double amount): amount(amount){
 
         }
 
         double getAmount() const{
-
+            return amount;
         }
 };
 
