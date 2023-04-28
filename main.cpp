@@ -70,30 +70,63 @@ public:
 
 class BankDatabase
 {
-private:
+    private:
+    struct Account{
 
+        int accountNumber;
+        int pin;
+        double balance;
 
-public:
+    };
+
+    vector<Account> accounts;
+
+    public:
 
     BankDatabase(){
-
+        accounts.push_back({1234,5678, 1000.00});
+         accounts.push_back({5678,1234, 2000.00});
+          accounts.push_back({1357,2468, 3424.00});
+            accounts.push_back({9999, 1111, 321.34});
+              accounts.push_back({1290, 9876, 1290.00});
+               accounts.push_back({3456, 1290, 4278.00});
     }
 
     bool authenticateUser(int accountNumber, int pin){
-
+        for(auto& account : accounts){
+            if(account.accountNumber == accountNumber && account.pin == pin){
+                return true;
+            }
+        }
+        return false;
     }
 
     double getAvailableBalance(int accountNumber){
 
+        for(auto& account : accounts){
+            if(account.accountNumber == accountNumber){
+                return account.balance;
+            }
+        }
+        return 0.0;
     }
 
     void credit(int accountNumber, double amount){
-
+        for(auto account : accounts){
+            if(account.accountNumber == accountNumber){
+                account.balance += amount;
+                break;
+            }
     }
 
     void debit(int accountNumber, double amount){
+        for(auto account : accounts){
+                    if(account.accountNumber == accountNumber){
+                        account.balance -= amount;
+                        break;
+                    }
 
-
+    }
     }
 
 
