@@ -16,15 +16,15 @@ class Screen
 public:
 
     void displayMessage(string message){
-
+        cout<<message;
     }
 
     void displayMessageLine(string message){
-
+        cout << message << endl;
     }
 
     void displayMoneyAmount(double amount){
-
+        cout<<amount<<" tk ";
     }
 
 
@@ -53,7 +53,7 @@ class CashDispenser
 {
 public:
     void dispenseCash(double amount){
-
+        cout<<"Dispensing cash "<<amount<<" tk...."<<endl;
     }
 
 };
@@ -63,7 +63,7 @@ class DepositSlot
 public:
 
     void accenptEnvelope(){
-
+        cout<<"Please insert your envelope..."<<endl;
     }
 
 };
