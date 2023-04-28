@@ -34,12 +34,17 @@ class Keypad
 {
 public:
     int getInput(){
+        int input;
+        cin>>input;
 
+        return input;
     }
 
     double getAmountInput(){
+        double input;
+        cin>>input;
 
-
+        return input;
     }
 
 };
