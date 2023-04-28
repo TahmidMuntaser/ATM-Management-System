@@ -118,6 +118,7 @@ class BankDatabase
                 break;
             }
     }
+    }
 
     void debit(int accountNumber, double amount){
         for(auto account : accounts){
@@ -151,6 +152,15 @@ class Deposit
 class ATMController
 {
     private:
+        Screen screen;
+        Keypad keypad;
+        CashDispenser cashDispenser;
+        DepositSlot depositSlot;
+        BankDatabase bankDatabase;
+
+        int accountNumber;
+        bool userAuthenticated;
+
 
     public:
 
