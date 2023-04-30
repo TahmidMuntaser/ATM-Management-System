@@ -202,7 +202,7 @@ class ATMController
 
 
     void performBalanceInquiry(){
-
+     
     }
 
     void performWithdrawal(){
@@ -214,6 +214,23 @@ class ATMController
     }
 
     void authenticateUser(){
+
+           
+        screen.displayMessageLine("\nWelcome! ");
+        screen.displayMessageLine("Please enter your account number: ");
+        accountNumber = keypad.getInput();
+
+        screen.displayMessageLine("Please Enter your PIN: ");
+        int pin = keypad.getInput();
+
+
+        userAuthenticated = bankDatabase.authenticateUser(accountNumber, pin);
+
+
+        if(!userAuthenticated){
+            screen.displayMessageLine("\nInvalid Account Number or PIN, Please try again...");
+            authenticateUser();
+        }
 
     }
 
