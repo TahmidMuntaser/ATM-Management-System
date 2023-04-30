@@ -127,7 +127,7 @@ class BankDatabase
                         break;
                     }
 
-    }
+        }
     }
 
 
@@ -161,8 +161,44 @@ class ATMController
         int accountNumber;
         bool userAuthenticated;
 
+        enum TransactionType{
+            BALANCE_INQUIRY,
+            WITHDRAWAL,
+            DEPOSIT,
+            QUIT
+        };
 
-    public:
+        TransactionType selectTransactionType(){
+            screen.displayMessageLine(" Select a Transaction Type: ");
+             screen.displayMessageLine("1. Balance inquiry");
+              screen.displayMessageLine("2. Withdraw");
+               screen.displayMessageLine("3. Deposit");
+                screen.displayMessageLine("4. Quit");
+
+            int choice = keypad.getInput();
+
+            switch (choice)
+            {
+            case 1:
+                return BALANCE_INQUIRY;
+            
+            case 2:
+                return WITHDRAWAL;
+            
+            case 3:
+                return DEPOSIT;
+        
+            case 4:
+                return QUIT;
+            
+            default:
+
+                 screen.displayMessageLine("\nInvalid choice. Please try again.");
+                 return selectTransactionType();
+                
+            }
+        }
+    
 
 
     void performBalanceInquiry(){
