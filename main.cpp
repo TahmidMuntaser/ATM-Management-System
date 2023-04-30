@@ -169,7 +169,7 @@ class ATMController
         };
 
         TransactionType selectTransactionType(){
-            screen.displayMessageLine(" Select a Transaction Type: ");
+            screen.displayMessageLine("\nSelect a Transaction Type: ");
              screen.displayMessageLine("1. Balance inquiry");
               screen.displayMessageLine("2. Withdraw");
                screen.displayMessageLine("3. Deposit");
@@ -219,7 +219,39 @@ class ATMController
 
     public:
         void run(){
+            while (true)
+            {
+                authenticateUser();
+
+                while (userAuthenticated)
+                {
+                    TransactionType transactionType = selectTransactionType();
+
+                    switch (transactionType)
+                    {
+                    case BALANCE_INQUIRY:
+                        performBalanceInquiry();
+                        break;
+
+                     case WITHDRAWAL:
+                        performWithdrawal();
+                        break;
+
+                     case DEPOSIT:
+                        performDeposit();
+                        break;
+
+                     case QUIT:
+                        screen.displayMessageLine("\nGoodbye!");
+                        break;
+                    
+
+                    }
+              
+                }
             
+            
+            }
         }
 
 };
