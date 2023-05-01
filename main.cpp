@@ -206,7 +206,7 @@ class ATMController
         screen.displayMessageLine("\nBalance inquiry:");
         double availableBalance = bankDatabase.getAvailableBalance(accountNumber);
 
-        screen.displayMessage(" - Available balance: ");
+        screen.displayMessage("- Available balance: ");
         screen.displayMoneyAmount(availableBalance);
         screen.displayMessageLine("");
 
@@ -221,11 +221,11 @@ class ATMController
 
         double availableBalance = bankDatabase.getAvailableBalance(accountNumber);
 
-        screen.displayMessage(" - Available balance: ");
+        screen.displayMessage("- Available balance: ");
         screen.displayMoneyAmount(availableBalance);
         screen.displayMessageLine("");
 
-        screen.displayMessageLine(" - Enter amount to withdraw: ");
+        screen.displayMessageLine("- Enter amount to withdraw: ");
         double withdrawalAmount = keypad.getAmountInput();
 
         if (withdrawalAmount > availableBalance) {
@@ -237,7 +237,7 @@ class ATMController
         bankDatabase.debit(accountNumber, withdrawalAmount);
 
         screen.displayMessageLine("\nTransaction complete.");
-        screen.displayMessage(" - New available balance: ");
+        screen.displayMessage("- New available balance: ");
         screen.displayMoneyAmount(bankDatabase.getAvailableBalance(accountNumber));
         screen.displayMessageLine("");
 
@@ -251,7 +251,7 @@ class ATMController
 
       screen.displayMessageLine("\nDeposit:");
 
-        screen.displayMessageLine(" - Enter deposit amount: ");
+        screen.displayMessageLine("- Enter deposit amount: ");
         double depositAmount = keypad.getAmountInput();
 
         Deposit deposit(depositAmount);
@@ -260,7 +260,7 @@ class ATMController
 
         screen.displayMessageLine("\nTransaction complete.");
         bankDatabase.credit(accountNumber, deposit.getAmount());
-        screen.displayMessage(" - New available balance: ");
+        screen.displayMessage("- New available balance: ");
         screen.displayMoneyAmount(bankDatabase.getAvailableBalance(accountNumber));
         screen.displayMessageLine("");
 
@@ -275,10 +275,10 @@ class ATMController
 
            
         screen.displayMessageLine("\nWelcome! ");
-        screen.displayMessageLine("Please enter your account number: ");
+        screen.displayMessageLine("Please Enter your account number: ");
         accountNumber = keypad.getInput();
 
-        screen.displayMessageLine("Please Enter your PIN: ");
+        screen.displayMessageLine("Please Enter your 4 digit PIN: ");
         int pin = keypad.getInput();
 
 
@@ -317,7 +317,7 @@ class ATMController
                         break;
 
                      case QUIT:
-                        screen.displayMessageLine("\nGoodbye!");
+                        screen.displayMessageLine("\nThank You...");
                         return;
                     
 
