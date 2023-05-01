@@ -71,11 +71,11 @@ public:
 class BankDatabase
 {
     private:
-    struct Account{
+        struct Account{
 
-        int accountNumber;
-        int pin;
-        double balance;
+            int accountNumber;
+            int pin;
+            double balance;
 
     };
 
@@ -112,7 +112,7 @@ class BankDatabase
     }
 
     void credit(int accountNumber, double amount){
-        for(auto account : accounts){
+        for(auto& account : accounts){
             if(account.accountNumber == accountNumber){
                 account.balance += amount;
                 break;
@@ -121,7 +121,7 @@ class BankDatabase
     }
 
     void debit(int accountNumber, double amount){
-        for(auto account : accounts){
+        for(auto& account : accounts){
                     if(account.accountNumber == accountNumber){
                         account.balance -= amount;
                         break;
@@ -203,13 +203,71 @@ class ATMController
 
     void performBalanceInquiry(){
      
+        screen.displayMessageLine("\nBalance inquiry:");
+        double availableBalance = bankDatabase.getAvailableBalance(accountNumber);
+
+        screen.displayMessage(" - Available balance: ");
+        screen.displayMoneyAmount(availableBalance);
+        screen.displayMessageLine("");
+
+        // Wait for user to press Enter
+        screen.displayMessageLine("\nPress Enter to continue...");
+        while (cin.get() != '\n');
     }
 
     void performWithdrawal(){
 
+        screen.displayMessageLine("\nWithdrawal:");
+
+        double availableBalance = bankDatabase.getAvailableBalance(accountNumber);
+
+        screen.displayMessage(" - Available balance: ");
+        screen.displayMoneyAmount(availableBalance);
+        screen.displayMessageLine("");
+
+        screen.displayMessageLine(" - Enter amount to withdraw: ");
+        double withdrawalAmount = keypad.getAmountInput();
+
+        if (withdrawalAmount > availableBalance) {
+            screen.displayMessageLine("\nInsufficient funds. Please try again.");
+            return;
+        }
+
+        cashDispenser.dispenseCash(withdrawalAmount);
+        bankDatabase.debit(accountNumber, withdrawalAmount);
+
+        screen.displayMessageLine("\nTransaction complete.");
+        screen.displayMessage(" - New available balance: ");
+        screen.displayMoneyAmount(bankDatabase.getAvailableBalance(accountNumber));
+        screen.displayMessageLine("");
+
+        // Wait for user to press Enter
+        screen.displayMessageLine("\nPress Enter to continue...");
+        while (cin.get() != '\n');
+
     }
 
     void performDeposit(){
+
+      screen.displayMessageLine("\nDeposit:");
+
+        screen.displayMessageLine(" - Enter deposit amount: ");
+        double depositAmount = keypad.getAmountInput();
+
+        Deposit deposit(depositAmount);
+
+        depositSlot.accenptEnvelope();
+
+        screen.displayMessageLine("\nTransaction complete.");
+        bankDatabase.credit(accountNumber, deposit.getAmount());
+        screen.displayMessage(" - New available balance: ");
+        screen.displayMoneyAmount(bankDatabase.getAvailableBalance(accountNumber));
+        screen.displayMessageLine("");
+
+        // Wait for user to press Enter
+        screen.displayMessageLine("\nPress Enter to continue...");
+        while (cin.get() != '\n');
+
 
     }
 
@@ -260,7 +318,7 @@ class ATMController
 
                      case QUIT:
                         screen.displayMessageLine("\nGoodbye!");
-                        break;
+                        return;
                     
 
                     }
